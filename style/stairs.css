@@ -1,0 +1,97 @@
+:root {
+    --stairs-color: rgb(233, 81, 238);
+    --stairs-color--darker: rgb(191, 67, 196);
+    --stairs-color--brighter: rgb(237, 112, 241);
+    --stairs-bg-color: rgb(247, 166, 243);
+}
+#stairs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--stairs-bg-color);
+}
+.stairs {
+    width: 400px;
+    height: 50px;
+    transform-style: preserve-3d;
+    animation: stairs-rotate 20s linear infinite;
+}
+@keyframes stairs-rotate {
+    0% {
+        transform: translateY(-100px) rotateX(-20deg) rotateY(0deg);
+    }
+    100% {
+        transform: translateY(-100px) rotateX(-20deg) rotateY(360deg);
+    }
+}
+.stairs .top {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    background-color: var(--stairs-color);
+    transform-style: preserve-3d;
+    transform: rotateX(90deg) rotateZ(90deg) translate3d(0, 75px, 675px);
+}
+.stairs .top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background-color: var(--stairs-color--darker);
+    transform: rotateX(90deg) translateY(-150px);
+}
+.wall {
+    position: relative;
+    width: calc(100% - 50px * var(--i));
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: translateZ(-150px);
+    background-color: var(--stairs-color--darker);
+}
+.wall::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--stairs-color--darker);
+    transform: translateZ(300px);
+}
+.stair {
+    position: relative;
+    width: 300px;
+    height: 100%;
+    transform-style: preserve-3d;
+    background-color: var(--stairs-color);
+    transform: rotateY(90deg) rotateX(90deg) translate3d(0, calc(225px - 50px * var(--i)), 325px);
+}
+.stair::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(90%);
+    background-color: var(--stairs-color);
+    transform: rotateX(90deg) translate3d(0, -25px, -25px);
+}
+.stairs .top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 400px;
+    background-color: var(--stairs-color--darker);
+    transform: translate3d(0, -250px, -300px);
+    box-shadow: 0 0 100px 20px var(--stairs-color--darker),
+    0 0 200px 10px var(--stairs-color--darker)
+}
+.stair:hover {
+    background-color: var(--stairs-color--brighter);
+}
+
